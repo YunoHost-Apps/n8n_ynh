@@ -21,6 +21,7 @@ path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 port=$(ynh_app_setting_get --app=$app --key=port)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+datadir=$(ynh_app_setting_get --app=$app --key=datadir)
 
 #=================================================
 # CHECK VERSION
@@ -70,7 +71,7 @@ then
 	# Download, check integrity, uncompress and patch the source from app.src
 	pushd $final_path
  		ynh_use_nodejs
- 		ynh_exec_as $app env $ynh_node_load_PATH npm install n8n@$n8n_version
+ 		ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n@${n8n_version}
 	popd
 fi
 
@@ -94,20 +95,11 @@ ynh_script_progression --message="Installing dependencies..." --weight=12
 ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
-# UPDATE A CONFIG FILE
-#=================================================
-ynh_script_progression --message="Updating a configuration file..." --weight=1
-
-ynh_add_config --template="../conf/.env" --destination="$final_path/.env"
-
-chmod 400 "$final_path/.env"
-chown $app:$app "$final_path/.env"
-
-#=================================================
 # SETUP SYSTEMD
 #=================================================
 ynh_script_progression --message="Upgrading systemd configuration..." --weight=2
 
+ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH" --target_file="../conf/systemd.service"
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
@@ -116,14 +108,14 @@ ynh_add_systemd_config
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=2
 
-yunohost service add $app --description="" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Workflow Automation Tool" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=6
 
-ynh_systemd_action --service_name=$app --action=restart --log_path=systemd #--line_match=""
+ynh_systemd_action --service_name=$app --action=restart --log_path=systemd --line_match="Editor is now accessible via:"
 
 #=================================================
 # RELOAD NGINX
