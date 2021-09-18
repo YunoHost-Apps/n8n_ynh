@@ -22,7 +22,7 @@
     "requirements": {
         "yunohost": ">= 4.2.4"
     },
-    "multi_instance": true,
+    "multi_instance": false,
     "services": [
         "nginx"
     ],
