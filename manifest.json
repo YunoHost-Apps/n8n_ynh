@@ -33,12 +33,6 @@
                 "type": "domain"
             },
             {
-                "name": "path",
-                "type": "path",
-                "example": "/n8n",
-                "default": "/n8n"
-            },
-            {
                 "name": "admin",
                 "type": "user"
             },
