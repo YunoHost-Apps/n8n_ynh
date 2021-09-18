@@ -100,7 +100,7 @@ ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=3
 
-yunohost service add $app --description="" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Workflow Automation Tool" --log="/var/log/$app/$app.log"
 
 #=================================================
 # RESTORE SYSTEMD

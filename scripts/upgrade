@@ -71,7 +71,7 @@ then
 	# Download, check integrity, uncompress and patch the source from app.src
 	pushd $final_path
  		ynh_use_nodejs
- 		ynh_exec_as $app env $ynh_node_load_PATH npm install n8n@${n8n_version}
+ 		ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n@${n8n_version}
 	popd
 fi
 
@@ -99,6 +99,7 @@ ynh_install_nodejs --nodejs_version=$nodejs_version
 #=================================================
 ynh_script_progression --message="Upgrading systemd configuration..." --weight=2
 
+ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH" --target_file="../conf/systemd.service"
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
@@ -107,7 +108,7 @@ ynh_add_systemd_config
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=2
 
-yunohost service add $app --description="" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Workflow Automation Tool" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE

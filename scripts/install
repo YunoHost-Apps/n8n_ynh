@@ -103,7 +103,6 @@ ynh_script_progression --message="Installing $app..." --weight=2
 
 pushd $final_path
  	ynh_use_nodejs
- 	#ynh_exec_as $app
  	ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n --unsafe-perm
 popd
 
@@ -157,7 +156,7 @@ ynh_add_systemd_config
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=3
 
-yunohost service add $app --description="" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Workflow Automation Tool" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
