@@ -64,8 +64,6 @@ ynh_app_setting_set --app=$app --key=port --value=$port
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --weight=6
 
-ynh_exec_warn_less ynh_install_app_dependencies $pkg_dependencies
-
 ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
@@ -94,7 +92,7 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 #ynh_setup_source --dest_dir=$final_path
-mkdir $final_path
+mkdir -p $final_path
 
 #=================================================
 # INSTALL ETHERPAD
