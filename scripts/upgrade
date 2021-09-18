@@ -18,10 +18,9 @@ app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
-admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 port=$(ynh_app_setting_get --app=$app --key=port)
-password=$(ynh_app_setting_get --app=$app --key=password)
+db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 
 #=================================================
 # CHECK VERSION
@@ -92,31 +91,17 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --weight=12
 
-ynh_exec_warn_less ynh_install_app_dependencies $pkg_dependencies
-
 ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
-# INSTALL ETHERPAD
+# UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Installing Etherpad..." --weight=90
+ynh_script_progression --message="Updating a configuration file..." --weight=1
 
-chown -R $app: $final_path
+ynh_add_config --template="../conf/.env" --destination="$final_path/.env"
 
-pushd $final_path
- 	ynh_use_nodejs
-popd
-
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-
-# Set permissions on app files
-chown -R $app: $final_path
-chmod o-rwx $final_path
-chmod 600 $final_path/credentials.json
+chmod 400 "$final_path/.env"
+chown $app:$app "$final_path/.env"
 
 #=================================================
 # SETUP SYSTEMD
@@ -124,7 +109,7 @@ chmod 600 $final_path/credentials.json
 ynh_script_progression --message="Upgrading systemd configuration..." --weight=2
 
 # Create a dedicated systemd config
-ynh_add_systemd_config --others_var="ynh_node_load_PATH"
+ynh_add_systemd_config
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
@@ -138,7 +123,7 @@ yunohost service add $app --description="" --log="/var/log/$app/$app.log"
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=6
 
-ynh_systemd_action --service_name=$app --action=restart --log_path=systemd --line_match=""
+ynh_systemd_action --service_name=$app --action=restart --log_path=systemd #--line_match=""
 
 #=================================================
 # RELOAD NGINX

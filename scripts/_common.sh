@@ -4,9 +4,6 @@
 # COMMON VARIABLES
 #=================================================
 
-# dependencies used by the app
-pkg_dependencies="postgresql postgresql-contrib"
-
 nodejs_version=14
 
 n8n_version=0.138.0
