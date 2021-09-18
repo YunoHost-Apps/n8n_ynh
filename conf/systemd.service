@@ -1,5 +1,5 @@
 [Unit]
-Description=.
+Description=n8n
 After=syslog.target network.target
 
 [Service]
