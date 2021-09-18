@@ -1,5 +1,5 @@
 [Unit]
-Description=n8n
+Description=n8n: Workflow Automation Tool
 After=syslog.target network.target
 
 [Service]
