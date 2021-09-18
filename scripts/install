@@ -97,7 +97,17 @@ ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 mkdir -p $final_path
 
 #=================================================
-# INSTALL ETHERPAD
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding a configuration file..." --weight=1
+
+ynh_add_config --template="../conf/.env" --destination="$final_path/.env"
+
+chmod 400 "$final_path/.env"
+chown $app:$app "$final_path/.env"
+
+#=================================================
+# INSTALL n8n
 #=================================================
 ynh_script_progression --message="Installing $app..." --weight=2
 
@@ -132,16 +142,6 @@ mkdir -p $datadir
 chmod 750 "$datadir"
 chmod -R o-rwx "$datadir"
 chown -R $app:www-data "$datadir"
-
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-ynh_add_config --template="../conf/.env" --destination="$final_path/.env"
-
-chmod 400 "$final_path/.env"
-chown $app:$app "$final_path/.env"
 
 #=================================================
 # SETUP SYSTEMD
