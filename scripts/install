@@ -102,11 +102,10 @@ mkdir -p $final_path
 #=================================================
 ynh_script_progression --message="Installing $app..." --weight=2
 
-chown -R $app: $final_path
-
 pushd $final_path
  	ynh_use_nodejs
- 	ynh_exec_as $app env $ynh_node_load_PATH npm install n8n@$n8n_version -g
+ 	#ynh_exec_as $app
+ 	env $ynh_node_load_PATH npm install n8n@$n8n_version -g
 popd
 
 chmod 750 "$final_path"
