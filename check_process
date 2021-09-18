@@ -2,11 +2,7 @@
 	; Manifest
 		domain="domain.tld"
 		path="/path"
-		admin="john"
-		language="fr"
 		is_public=1
-		password="pass"
-		port="9001"
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=1
