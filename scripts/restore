@@ -115,7 +115,7 @@ systemctl enable $app.service --quiet
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=8
 
-ynh_systemd_action --service_name=$app --action=restart --log_path=systemd #--line_match=""
+ynh_systemd_action --service_name=$app --action=restart --log_path=systemd --line_match="Editor is now accessible via:"
 
 #=================================================
 # GENERIC FINALIZATION

@@ -103,8 +103,7 @@ ynh_script_progression --message="Installing $app..." --weight=2
 
 pushd $final_path
  	ynh_use_nodejs
- 	#ynh_exec_as $app
- 	ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n -g --unsafe-perm
+ 	ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n${n8n_version} --unsafe-perm
 popd
 
 chmod 750 "$final_path"

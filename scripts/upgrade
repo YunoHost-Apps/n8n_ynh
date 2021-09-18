@@ -113,7 +113,7 @@ yunohost service add $app --description="" --log="/var/log/$app/$app.log"
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=6
 
-ynh_systemd_action --service_name=$app --action=restart --log_path=systemd
+ynh_systemd_action --service_name=$app --action=restart --log_path=systemd --line_match="Editor is now accessible via:"
 
 #=================================================
 # RELOAD NGINX
