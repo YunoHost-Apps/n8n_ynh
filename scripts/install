@@ -28,6 +28,7 @@ path_url=$YNH_APP_ARG_PATH
 is_public=$YNH_APP_ARG_IS_PUBLIC
 password=$YNH_APP_ARG_PASSWORD
 admin=$YNH_APP_ARG_ADMIN
+timezone="$(cat /etc/timezone)"
 
 app=$YNH_APP_INSTANCE_NAME
 
