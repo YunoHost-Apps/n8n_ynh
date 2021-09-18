@@ -29,6 +29,11 @@ ynh_script_progression --message="Loading installation settings..." --weight=1
 # Needed for helper "ynh_add_nginx_config"
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 port=$(ynh_app_setting_get --app=$app --key=port)
+db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
+datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+password=$(ynh_app_setting_get --app=$app --key=password)
+timezone="$(cat /etc/timezone)"
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
@@ -102,6 +107,18 @@ then
 fi
 
 #=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding a configuration file..." --weight=1
+
+domain=$new_domain
+path=$new_path
+ynh_add_config --template="../conf/.env" --destination="$final_path/.env"
+
+chmod 400 "$final_path/.env"
+chown $app:$app "$final_path/.env"
+
+#=================================================
 # RELOAD NGINX
 #=================================================
 ynh_script_progression --message="Reloading NGINX web server..." --weight=2
@@ -114,7 +131,7 @@ ynh_systemd_action --service_name=nginx --action=reload
 ynh_script_progression --message="Starting a systemd service..." --weight=6
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action=restart --log_path=systemd
+ynh_systemd_action --service_name=$app --action=restart --log_path=systemd --line_match="Editor is now accessible via:"
 
 #=================================================
 # END OF SCRIPT

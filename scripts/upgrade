@@ -71,7 +71,7 @@ then
 	# Download, check integrity, uncompress and patch the source from app.src
 	pushd $final_path
  		ynh_use_nodejs
- 		ynh_exec_warn_less env $ynh_node_load_PATH npm update n8n
+ 		ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n@${n8n_version}
 	popd
 fi
 
