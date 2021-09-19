@@ -3,8 +3,8 @@
     "id": "n8n",
     "packaging_format": 1,
     "description": {
-        "en": "Workflow Automation Tool. Easily automate tasks across different services.",
-        "fr": "Outil d'automatisation du flux de travail. Automatisez facilement les tâches sur différents services."
+        "en": "Workflow Automation Tool. Easily automate tasks across different services",
+        "fr": "Outil d'automatisation du flux de travail. Automatisez facilement les tâches sur différents services"
     },
     "version": "0.138.0~ynh1",
     "url": "https://n8n.io/",
