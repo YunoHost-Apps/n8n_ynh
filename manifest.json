@@ -35,10 +35,6 @@
             {
                 "name": "path",
                 "type": "path",
-                "ask": {
-                    "en": "Choose a path for n8n",
-                    "fr": "Choisissez un chemin pour n8n"
-                },
                 "example": "/n8n",
                 "default": "/n8n"
             },
