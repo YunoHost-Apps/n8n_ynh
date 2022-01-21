@@ -19,7 +19,7 @@ n8n is an extendable workflow automation tool. With a fair-code distribution mod
 
 **Shipped version:** 0.153.0~ynh1
 
-**Demo:** https://demo.example.com
+
 
 ## Screenshots
 
