@@ -11,7 +11,6 @@
     "upstream": {
         "license": "Apache-2.0-with-commons-clause",
         "website": "https://n8n.io/",
-        "demo": "https://demo.example.com",
         "admindoc": "https://docs.n8n.io/",
         "code": "https://github.com/n8n-io/n8n"
     },
