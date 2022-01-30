@@ -4,9 +4,9 @@
 # COMMON VARIABLES
 #=================================================
 
-nodejs_version=14
+nodejs_version=16
 
-n8n_version=0.138.0
+n8n_version=0.159.1
 
 #=================================================
 # PERSONAL HELPERS
