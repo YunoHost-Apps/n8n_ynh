@@ -113,7 +113,7 @@ chown $app:$app "$final_path/.env"
 #=================================================
 ynh_script_progression --message="Upgrading systemd configuration..." --weight=2
 
-ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH" --target_file="../conf/systemd.service"
+env_path="$PATH"
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
