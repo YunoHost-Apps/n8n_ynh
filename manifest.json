@@ -6,7 +6,7 @@
         "en": "Workflow Automation Tool. Easily automate tasks across different services",
         "fr": "Outil d'automatisation du flux de travail. Automatisez facilement les tâches sur différents services"
     },
-    "version": "0.168.2~ynh1",
+    "version": "0.169.0~ynh1",
     "url": "https://n8n.io/",
     "upstream": {
         "license": "Apache-2.0",
