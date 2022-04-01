@@ -53,6 +53,7 @@ ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=password --value=$password
+ynh_app_setting_set --app=$app --key=email --value=$email
 
 #=================================================
 # STANDARD MODIFICATIONS
