@@ -77,6 +77,12 @@ then
 	ynh_die --message="Upgrade from version 0.169.0~ynh1 is not possible is not possible yet because data migration is not supported. Please let us know you encounter this message in this issue: https://github.com/YunoHost-Apps/n8n_ynh/issues/18"
 fi
 
+# If email doesn't exist, create it
+if [ -z "$email" ]; then
+	email=$(ynh_user_get_info --username=$admin --key=mail)
+	ynh_app_setting_set --app=$app --key=email --value=$email
+fi
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
