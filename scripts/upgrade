@@ -66,6 +66,17 @@ ynh_script_progression --message="Making sure dedicated system user exists..." -
 ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+if ynh_compare_current_package_version --comparison le --version 0.169.0~ynh1
+then
+	ynh_die --message="Upgrade from version 0.169.0~ynh1 is not possible is not possible yet because data migration is not supported. Please let us know you encounter this message in this issue: https://github.com/YunoHost-Apps/n8n_ynh/issues/18"
+fi
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
