@@ -35,16 +35,11 @@ datadir=$(ynh_app_setting_get --app=$app --key=datadir)
 #=================================================
 ynh_script_progression --message="Validating restoration parameters..." --weight=2
 
-test ! -d $final_path || ynh_die --message="There is already a directory: $final_path "
+test ! -d $final_path \
+	|| ynh_die --message="There is already a directory: $final_path "
 
 #=================================================
 # STANDARD RESTORATION STEPS
-#=================================================
-# RESTORE THE NGINX CONFIGURATION
-#=================================================
-
-ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
-
 #=================================================
 # RECREATE THE DEDICATED USER
 #=================================================
@@ -84,6 +79,13 @@ ynh_script_progression --message="Reinstalling dependencies..." --weight=7
 
 # Install Nodejs
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+
+#=================================================
+# RESTORE THE NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Restoring the NGINX web server configuration..." --weight=1
+
+ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
 #=================================================
 # RESTORE THE MYSQL DATABASE
