@@ -17,12 +17,16 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 n8n is an extendable workflow automation tool. With a fair-code distribution model, n8n will always have visible source code, be available to self-host, and allow you to add your own custom functions, logic and apps. n8n's node-based approach makes it highly versatile, enabling you to connect anything to everything.
 
-**Version incluse :** 0.193.3~ynh1
+**Version incluse :** 0.196.0~ynh1 *(:warning: Il s'agit de la branche `testing`. La [branche `master`](https://github.com/YunoHost-Apps/n8n_ynh/tree/master) utilisée dans le catalogue est actuellement en 0.193.3\~ynh1.)*
 
 
 ## Captures d'écran
 
 ![Capture d'écran de n8n](./doc/screenshots/n8n-screenshot.png)
+
+## :red_circle: Fonctions indésirables
+
+- **Not totally free upstream**: The packaged app is under an overall free licence, but with clauses that restrict its use.
 
 ## Documentations et ressources
 
