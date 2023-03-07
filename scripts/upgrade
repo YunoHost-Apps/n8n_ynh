@@ -25,7 +25,6 @@ db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 datadir=$(ynh_app_setting_get --app=$app --key=datadir)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
-password=$(ynh_app_setting_get --app=$app --key=password)
 timezone="$(cat /etc/timezone)"
 email=$(ynh_app_setting_get --app=$app --key=email)
 
