@@ -14,12 +14,8 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 timezone="$(cat /etc/timezone)"
+
 email=$(ynh_user_get_info --username=$admin --key=mail)
-
-#=================================================
-# STORE SETTINGS FROM MANIFEST
-#=================================================
-
 ynh_app_setting_set --app=$app --key=email --value=$email
 
 #=================================================
