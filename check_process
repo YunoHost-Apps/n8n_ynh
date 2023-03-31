@@ -21,4 +21,4 @@ Notification=none
 ;;; Upgrade options
 	; commit=0d34c8a15f95a3dc3b9e1d233bc03410d182628a
 		name=#29
-		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&password=pass&port=9001&
+		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&port=9001&

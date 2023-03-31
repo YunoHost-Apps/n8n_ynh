@@ -6,7 +6,7 @@
         "en": "Workflow Automation Tool. Easily automate tasks across different services",
         "fr": "Outil d'automatisation du flux de travail. Automatisez facilement les tâches sur différents services"
     },
-    "version": "0.203.1~ynh1",
+    "version": "0.218.0~ynh1",
     "url": "https://n8n.io/",
     "upstream": {
         "license": "Apache-2.0",
@@ -39,7 +39,11 @@
             },
             {
                 "name": "admin",
-                "type": "user"
+                "type": "user",
+                "help": {
+                    "en": "Users email address to use for notifications",
+                    "fr": "Adresse e-mail des utilisateurs à utiliser pour les notifications"
+                }
             },
             {
                 "name": "is_public",
@@ -47,12 +51,8 @@
                 "help": {
                     "en": "If enabled, n8n will be accessible by people who do not have an account. This can be changed later via the webadmin.",
                     "fr": "Si cette case est cochée, n8n sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
-            },
+                },
                 "default": true
-            },
-            {
-                "name": "password",
-                "type": "password"
             }
         ]
     }
