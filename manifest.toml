@@ -16,7 +16,7 @@ admindoc = "https://docs.n8n.io/"
 code = "https://github.com/n8n-io/n8n"
 
 [integration]
-yunohost = ">= 11.1.15"
+yunohost = ">= 11.1.19"
 architectures = "all"
 multi_instance = false
 ldap = false

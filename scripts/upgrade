@@ -61,7 +61,6 @@ then
 	popd
 fi
 
-chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
@@ -76,7 +75,7 @@ ynh_add_nginx_config
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-#REMOVEME? ynh_script_progression --message="Installing dependencies..." --weight=12
+ynh_script_progression --message="Installing dependencies..." --weight=12
 
 ynh_install_nodejs --nodejs_version=$nodejs_version
 

@@ -27,10 +27,10 @@ ynh_install_nodejs --nodejs_version=$nodejs_version
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+#ynh_script_progression --message="Setting up source files..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
-mkdir -p $install_dir
+#mkdir -p $install_dir
 
 #=================================================
 # INSTALL n8n
@@ -42,7 +42,6 @@ pushd $install_dir
 	ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n@${n8n_version}
 popd
 
-chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
