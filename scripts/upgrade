@@ -47,24 +47,6 @@ if [ -z "$email" ]; then
 fi
 
 #=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
-
-	# Download, check integrity, uncompress and patch the source from app.src
-	pushd $install_dir
- 		ynh_use_nodejs
- 		ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n@${n8n_version}
-	popd
-fi
-
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-
-#=================================================
 # NGINX CONFIGURATION
 #=================================================
 ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=3
@@ -89,6 +71,17 @@ ynh_add_config --template="../conf/.env" --destination="$install_dir/.env"
 
 chmod 400 "$install_dir/.env"
 chown $app:$app "$install_dir/.env"
+
+#=================================================
+# INSTALL n8n
+#=================================================
+ynh_script_progression --message="Installing $app..." --weight=2
+
+# Download, check integrity, uncompress and patch the source from app.src
+pushd $install_dir
+ 	ynh_use_nodejs
+ 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH $ynh_npm update n8n@${n8n_version}
+popd
 
 #=================================================
 # START SYSTEMD SERVICE
