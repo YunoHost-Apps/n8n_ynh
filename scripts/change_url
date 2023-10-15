@@ -10,12 +10,6 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# LOAD SETTINGS
-#=================================================
-
-timezone="$(cat /etc/timezone)"
-
-#=================================================
 # STANDARD MODIFICATIONS
 #=================================================
 # STOP SYSTEMD SERVICE
