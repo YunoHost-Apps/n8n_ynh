@@ -14,7 +14,6 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 email=$(ynh_user_get_info --username=$admin --key=mail)
-ynh_app_setting_set --app=$app --key=email --value=$email
 
 #=================================================
 # INSTALL DEPENDENCIES
@@ -28,7 +27,10 @@ ynh_install_nodejs --nodejs_version=$nodejs_version
 #ynh_script_progression --message="Setting up source files..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
-#mkdir -p $install_dir
+mkdir -p $install_dir
+
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # INSTALL n8n
@@ -37,7 +39,7 @@ ynh_script_progression --message="Installing $app..." --weight=2
 
 pushd $install_dir
  	ynh_use_nodejs
-	ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n@${n8n_version}
+	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH $ynh_npm install n8n@${n8n_version}
 popd
 
 chmod -R o-rwx "$install_dir"
@@ -50,7 +52,6 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=4
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
 
 env_path="$PATH"
 # Create a dedicated systemd config
