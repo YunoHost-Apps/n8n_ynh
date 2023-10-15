@@ -8,6 +8,8 @@ nodejs_version=20
 
 n8n_version=1.9.3
 
+timezone="$(cat /etc/timezone)"
+
 #=================================================
 # PERSONAL HELPERS
 #=================================================
