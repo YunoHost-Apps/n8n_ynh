@@ -36,8 +36,11 @@ ynh_script_progression --message="Restoring the PostgreSQL database..." --weight
 ynh_psql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./db.sql
 
 #=================================================
-# REINSTALL DEPENDENCIES
+# RESTORE SYSTEM CONFIGURATIONS
 #=================================================
+# RESTORE THE PHP-FPM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Restoring system configurations related to $app..." --weight=1
 
 # Install Nodejs
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
