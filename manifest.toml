@@ -5,7 +5,7 @@ name = "n8n"
 description.en = "Workflow Automation Tool. Easily automate tasks across different services"
 description.fr = "Outil d'automatisation du flux de travail. Automatisez facilement les tâches sur différents services"
 
-version = "1.1.1~ynh1"
+version = "1.9.3~ynh1"
 
 maintainers = []
 
@@ -49,6 +49,7 @@ ram.runtime = "50M"
     [resources.ports]
 
     [resources.system_user]
+    allow_email = true
 
     [resources.install_dir]
 
