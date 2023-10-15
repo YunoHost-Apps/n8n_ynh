@@ -80,7 +80,7 @@ ynh_script_progression --message="Installing $app..." --weight=2
 # Download, check integrity, uncompress and patch the source from app.src
 pushd $install_dir
  	ynh_use_nodejs
- 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH $ynh_npm update n8n@${n8n_version}
+ 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH $ynh_npm install n8n@${n8n_version}
 popd
 
 #=================================================
