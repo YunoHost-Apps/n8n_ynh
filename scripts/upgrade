@@ -46,6 +46,12 @@ if [ -z "$email" ]; then
 	ynh_app_setting_set --app=$app --key=email --value=$email
 fi
 
+# If language doesn't exist, create it
+if [ -z "$language" ]; then
+	language="en"
+	ynh_app_setting_set --app=$app --key=language --value=$language
+fi
+
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
