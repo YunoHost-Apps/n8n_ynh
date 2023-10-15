@@ -59,7 +59,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server"
+    packages = "postgresql"
 
     [resources.database]
-    type = "mysql"
+    type = "postgresql"
