@@ -1,0 +1,70 @@
+packaging_format = 2
+
+id = "n8n"
+name = "n8n"
+description.en = "Workflow Automation Tool. Easily automate tasks across different services"
+description.fr = "Outil d'automatisation du flux de travail. Automatisez facilement les tâches sur différents services"
+
+version = "1.9.3~ynh1"
+
+maintainers = []
+
+[upstream]
+license = "Apache-2.0"
+website = "https://n8n.io/"
+admindoc = "https://docs.n8n.io/"
+code = "https://github.com/n8n-io/n8n"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = false
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "1500M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/n8n"
+
+    [install.admin]
+    help.en = "Users email address to use for notifications"
+    help.fr = "Adresse e-mail des utilisateurs à utiliser pour les notifications"
+    type = "user"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.language]
+    ask.en = "Choose the application language"
+    ask.fr = "Choisissez la langue de l'application"
+    type = "select"
+    choices = ["fr", "en"]
+    default = "fr"
+
+[resources]
+
+    [resources.ports]
+
+    [resources.system_user]
+    allow_email = true
+
+    [resources.install_dir]
+
+    [resources.data_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "postgresql"
+
+    [resources.database]
+    type = "postgresql"

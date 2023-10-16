@@ -6,10 +6,10 @@ After=syslog.target network.target
 Type=simple
 User=__APP__
 Group=__APP__
-WorkingDirectory=__FINALPATH__/
+WorkingDirectory=__INSTALL_DIR__/
 Environment=PATH=__ENV_PATH__
 Environment=NODE_ENV=production
-ExecStart=__FINALPATH__/node_modules/n8n/bin/n8n
+ExecStart=__INSTALL_DIR__/node_modules/n8n/bin/n8n
 Restart=always
 
 # Sandboxing options to harden security

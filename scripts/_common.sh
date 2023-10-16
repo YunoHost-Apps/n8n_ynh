@@ -4,9 +4,12 @@
 # COMMON VARIABLES
 #=================================================
 
-nodejs_version=16
+nodejs_version=20
 
-n8n_version=0.221.2
+n8n_version=1.9.3
+
+timezone="$(cat /etc/timezone)"
+main_domain=$(cat /etc/yunohost/current_host)
 
 #=================================================
 # PERSONAL HELPERS

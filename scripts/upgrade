@@ -9,44 +9,13 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
-#=================================================
-# LOAD SETTINGS
-#=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
-
-app=$YNH_APP_INSTANCE_NAME
-
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-path_url=$(ynh_app_setting_get --app=$app --key=path)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-port=$(ynh_app_setting_get --app=$app --key=port)
-db_name=$(ynh_app_setting_get --app=$app --key=db_name)
-db_user=$db_name
-db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
-datadir=$(ynh_app_setting_get --app=$app --key=datadir)
-admin=$(ynh_app_setting_get --app=$app --key=admin)
-timezone="$(cat /etc/timezone)"
-email=$(ynh_app_setting_get --app=$app --key=email)
+email=$(ynh_user_get_info --username=$admin --key=mail)
 
 #=================================================
 # CHECK VERSION
 #=================================================
 
 upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
-#=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=1
-
-# Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
-	# restore it if the upgrade fails
-	ynh_restore_upgradebackup
-}
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -58,48 +27,26 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=42
 ynh_systemd_action --service_name=$app --action=stop --log_path="systemd"
 
 #=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
-
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir="$final_path"
-
-#=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
-if ynh_compare_current_package_version --comparison le --version 0.169.0~ynh1
+if ynh_compare_current_package_version --comparison le --version 0.218.0~ynh1
 then
-	ynh_die --message="Upgrade from version 0.169.0~ynh1 is not possible is not possible yet because data migration is not supported. Please let us know you encounter this message in this issue: https://github.com/YunoHost-Apps/n8n_ynh/issues/18"
+	ynh_die --message="Upgrade from version 0.218.0~ynh1 is not possible is not possible yet because data migration is not supported. Please let us know you encounter this message in this issue: https://github.com/YunoHost-Apps/n8n_ynh/issues/18"
 fi
 
 # If email doesn't exist, create it
-if [ -z "$email" ]; then
+if [ -z "${email:-}" ]; then
 	email=$(ynh_user_get_info --username=$admin --key=mail)
 	ynh_app_setting_set --app=$app --key=email --value=$email
 fi
 
-#=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
-
-	# Download, check integrity, uncompress and patch the source from app.src
-	pushd $final_path
- 		ynh_use_nodejs
- 		ynh_exec_warn_less env $ynh_node_load_PATH npm install n8n@${n8n_version}
-	popd
+# If language doesn't exist, create it
+if [ -z "${language:-}" ]; then
+	language="en"
+	ynh_app_setting_set --app=$app --key=language --value=$language
 fi
-
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app:www-data "$final_path"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -109,38 +56,37 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
-#=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Installing dependencies..." --weight=12
-
 ynh_install_nodejs --nodejs_version=$nodejs_version
+
+env_path="$PATH"
+# Create a dedicated systemd config
+ynh_add_systemd_config
+
+yunohost service add $app --description="Workflow Automation Tool" --log="/var/log/$app/$app.log"
 
 #=================================================
 # UPGRADE A CONFIGURATION FILE
 #=================================================
 ynh_script_progression --message="Upgrade a configuration file..." --weight=1
 
-ynh_add_config --template="../conf/.env" --destination="$final_path/.env"
+ynh_add_config --template="../conf/.env" --destination="$install_dir/.env"
 
-chmod 400 "$final_path/.env"
-chown $app:$app "$final_path/.env"
-
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Upgrading systemd configuration..." --weight=2
-
-env_path="$PATH"
-# Create a dedicated systemd config
-ynh_add_systemd_config
+chmod 400 "$install_dir/.env"
+chown $app:$app "$install_dir/.env"
 
 #=================================================
-# INTEGRATE SERVICE IN YUNOHOST
+# INSTALL n8n
 #=================================================
-ynh_script_progression --message="Integrating service in YunoHost..." --weight=2
+ynh_script_progression --message="Installing $app..." --weight=2
 
-yunohost service add $app --description="Workflow Automation Tool" --log="/var/log/$app/$app.log"
+# Download, check integrity, uncompress and patch the source from app.src
+pushd $install_dir
+ 	ynh_use_nodejs
+ 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH $ynh_npm install n8n@${n8n_version}
+	ynh_replace_string  --match_string="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'),$" \
+	                    --replace_string="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'), tls: {servername:'${main_domain}'}," \
+	                    --target_file="node_modules/n8n/dist/UserManagement/email/NodeMailer.js"
+popd
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -148,13 +94,6 @@ yunohost service add $app --description="Workflow Automation Tool" --log="/var/l
 ynh_script_progression --message="Starting a systemd service..." --weight=6
 
 ynh_systemd_action --service_name=$app --action=restart --log_path=systemd --line_match="Editor is now accessible via:"
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=2
-
-ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
