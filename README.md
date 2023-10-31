@@ -33,6 +33,7 @@ n8n is an extendable workflow automation tool. With a fair-code distribution mod
 * Official app website: <https://n8n.io/>
 * Official admin documentation: <https://docs.n8n.io/>
 * Upstream app code repository: <https://github.com/n8n-io/n8n>
+* YunoHost Store: <https://apps.yunohost.org/app/n8n>
 * Report a bug: <https://github.com/YunoHost-Apps/n8n_ynh/issues>
 
 ## Developer info

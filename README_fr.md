@@ -34,6 +34,7 @@ n8n est un outil d'automatisation de flux de travail extensible. Avec un modèle
 * Site officiel de l’app : <https://n8n.io/>
 * Documentation officielle de l’admin : <https://docs.n8n.io/>
 * Dépôt de code officiel de l’app : <https://github.com/n8n-io/n8n>
+* YunoHost Store: <https://apps.yunohost.org/app/n8n>
 * Signaler un bug : <https://github.com/YunoHost-Apps/n8n_ynh/issues>
 
 ## Informations pour les développeurs
