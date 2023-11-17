@@ -5,7 +5,7 @@ name = "n8n"
 description.en = "Workflow Automation Tool. Easily automate tasks across different services"
 description.fr = "Outil d'automatisation du flux de travail. Automatisez facilement les tâches sur différents services"
 
-version = "1.9.3~ynh1"
+version = "1.16.0~ynh1"
 
 maintainers = []
 
@@ -19,8 +19,11 @@ code = "https://github.com/n8n-io/n8n"
 yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = false
+
 ldap = false
+
 sso = false
+
 disk = "50M"
 ram.build = "1500M"
 ram.runtime = "50M"
