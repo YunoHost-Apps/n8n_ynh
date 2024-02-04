@@ -53,6 +53,13 @@ ram.runtime = "50M"
 
     [resources.ports]
 
+    [resources.sources]
+    
+        [resources.sources.main]
+        url = "https://github.com/n8n-io/n8n/archive/refs/tags/n8n@1.9.3.zip"
+        sha256 = "53114a7817f319bfc065566cd77ae889aacb2f2ffd8283f905292a31e19d41e1"
+        autoupdate.strategy = "latest_github_release"
+
     [resources.system_user]
     allow_email = true
 
