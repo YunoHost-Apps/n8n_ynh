@@ -6,7 +6,7 @@
 
 nodejs_version=20
 
-n8n_version=1.29.0
+n8n_version=$(ynh_app_upstream_version)
 
 timezone="$(cat /etc/timezone)"
 main_domain=$(cat /etc/yunohost/current_host)
