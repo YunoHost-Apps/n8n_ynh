@@ -54,9 +54,7 @@ ram.runtime = "50M"
     [resources.ports]
 
     [resources.sources]
-
-        # Source is only added for autoupdate, it's not actually being downloaded
-        # For updating version n8n version needs to be updated in `_common.sh`
+    
         [resources.sources.main]
         url = "https://github.com/n8n-io/n8n/archive/refs/tags/n8n@1.9.3.zip"
         sha256 = "53114a7817f319bfc065566cd77ae889aacb2f2ffd8283f905292a31e19d41e1"
