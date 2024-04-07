@@ -19,7 +19,7 @@ Il NE doit PAS être modifié à la main.
 n8n est un outil d'automatisation de flux de travail extensible. Avec un modèle de distribution de code équitable, n8n aura toujours un code source visible, sera disponible pour s'auto-héberger et vous permettra d'ajouter vos propres fonctions, logiques et applications personnalisées. L'approche basée sur les nœuds de n8n le rend très polyvalent, vous permettant de connecter n'importe quoi à tout.
 
 
-**Version incluse :** 1.9.3~ynh1
+**Version incluse :** 1.29.0~ynh1
 
 ## Captures d’écran
 
@@ -27,7 +27,7 @@ n8n est un outil d'automatisation de flux de travail extensible. Avec un modèle
 
 ## :red_circle: Anti-fonctionnalités
 
-- **Application sous licence libre restreinte**: L'application packagée est sous une licence globalement libre, mais avec des clauses qui pourraient restreindre son utilisation.
+- **Application sous licence libre restreinte **: L'application packagée est sous une licence globalement libre, mais avec des clauses qui pourraient restreindre son utilisation.
 
 ## Documentations et ressources
 
