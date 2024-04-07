@@ -27,7 +27,7 @@ n8n est un outil d'automatisation de flux de travail extensible. Avec un modèle
 
 ## :red_circle: Anti-fonctionnalités
 
-- **Application sous licence libre restreinte**: L'application packagée est sous une licence globalement libre, mais avec des clauses qui pourraient restreindre son utilisation.
+- **Application sous licence libre restreinte **: L'application packagée est sous une licence globalement libre, mais avec des clauses qui pourraient restreindre son utilisation.
 
 ## Documentations et ressources
 
