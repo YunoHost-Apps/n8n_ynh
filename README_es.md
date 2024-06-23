@@ -24,7 +24,7 @@ n8n is an extendable workflow automation tool. With a fair-code distribution mod
 
 ![Captura de n8n](./doc/screenshots/n8n-screenshot.png)
 
-## :red_circle: funcionalidades no deseadas
+## :red_circle: Características no deseables
 
 - **Not totally free upstream**: The packaged app is under an overall free license, but with clauses that may restrict its use.
 
