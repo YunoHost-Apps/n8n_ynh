@@ -5,7 +5,7 @@
 
 # YunoHost 上的 n8n
 
-[![集成程度](https://dash.yunohost.org/integration/n8n.svg)](https://dash.yunohost.org/appci/app/n8n) ![工作状态](https://ci-apps.yunohost.org/ci/badges/n8n.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/n8n.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/n8n.svg)](https://ci-apps.yunohost.org/ci/apps/n8n/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/n8n.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/n8n.maintain.svg)
 
 [![使用 YunoHost 安装 n8n](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=n8n)
 
@@ -18,7 +18,7 @@
 
 n8n is an extendable workflow automation tool. With a fair-code distribution model, n8n will always have visible source code, be available to self-host, and allow you to add your own custom functions, logic and apps. n8n's node-based approach makes it highly versatile, enabling you to connect anything to everything.
 
-**分发版本：** 1.45.1~ynh1
+**分发版本：** 1.50.1~ynh1
 
 ## 截图
 
