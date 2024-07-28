@@ -32,7 +32,7 @@ n8n is an extendable workflow automation tool. With a fair-code distribution mod
 
 - Website aplikasi resmi: <https://n8n.io/>
 - Dokumentasi admin resmi: <https://docs.n8n.io/>
-- Repositori kode aplikasi hulu: <https://github.com/n8n-io/n8n>
+- Depot kode aplikasi hulu: <https://github.com/n8n-io/n8n>
 - Gudang YunoHost: <https://apps.yunohost.org/app/n8n>
 - Laporkan bug: <https://github.com/YunoHost-Apps/n8n_ynh/issues>
 
