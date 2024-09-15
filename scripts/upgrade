@@ -70,7 +70,7 @@ ynh_script_progression "Installing $app..."
 # Download, check integrity, uncompress and patch the source from app.src
 pushd $install_dir
 
- 	ynh_hide_warnings ynh_exec_as_app node_load_PATH npm install n8n@$(ynh_app_upstream_version)
+ 	ynh_hide_warnings ynh_exec_as_app npm install n8n@$(ynh_app_upstream_version)
 	ynh_replace  --match="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'),$" \
 	                    --replace="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'), tls: {servername:'${main_domain}'}," \
 	                    --file="node_modules/n8n/dist/UserManagement/email/NodeMailer.js"
