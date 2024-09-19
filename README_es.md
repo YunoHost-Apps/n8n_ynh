@@ -38,7 +38,7 @@ n8n is an extendable workflow automation tool. With a fair-code distribution mod
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/n8n_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/n8n_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
