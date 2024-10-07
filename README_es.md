@@ -18,7 +18,7 @@ No se debe editar a mano.
 
 n8n is an extendable workflow automation tool. With a fair-code distribution model, n8n will always have visible source code, be available to self-host, and allow you to add your own custom functions, logic and apps. n8n's node-based approach makes it highly versatile, enabling you to connect anything to everything.
 
-**Versión actual:** 1.56.2~ynh1
+**Versión actual:** 1.59.4~ynh1
 
 ## Capturas
 
@@ -38,7 +38,7 @@ n8n is an extendable workflow automation tool. With a fair-code distribution mod
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/n8n_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/n8n_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
