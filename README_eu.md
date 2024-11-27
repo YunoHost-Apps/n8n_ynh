@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # n8n YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/n8n.svg)](https://ci-apps.yunohost.org/ci/apps/n8n/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/n8n.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/n8n.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/n8n)](https://ci-apps.yunohost.org/ci/apps/n8n/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/n8n)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/n8n)
 
 [![Instalatu n8n YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=n8n)
 
@@ -18,7 +20,7 @@ EZ editatu eskuz.
 
 n8n is an extendable workflow automation tool. With a fair-code distribution model, n8n will always have visible source code, be available to self-host, and allow you to add your own custom functions, logic and apps. n8n's node-based approach makes it highly versatile, enabling you to connect anything to everything.
 
-**Paketatutako bertsioa:** 1.67.1~ynh1
+**Paketatutako bertsioa:** 1.68.1~ynh1
 
 ## Pantaila-argazkiak
 
