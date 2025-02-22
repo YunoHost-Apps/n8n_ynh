@@ -20,7 +20,7 @@
 
 n8n is an extendable workflow automation tool. With a fair-code distribution model, n8n will always have visible source code, be available to self-host, and allow you to add your own custom functions, logic and apps. n8n's node-based approach makes it highly versatile, enabling you to connect anything to everything.
 
-**分发版本：** 1.80.0~ynh1
+**分发版本：** 1.80.1~ynh1
 
 ## 截图
 
