@@ -33,11 +33,6 @@ ram.runtime = "50M"
     type = "path"
     default = "/n8n"
 
-    [install.admin]
-    help.en = "Users email address to use for notifications"
-    help.fr = "Adresse e-mail des utilisateurs à utiliser pour les notifications"
-    type = "user"
-
     [install.init_main_permission]
     type = "group"
     default = "visitors"
@@ -49,18 +44,21 @@ ram.runtime = "50M"
     choices = ["fr", "en"]
     default = "fr"
 
+    [install.admin]
+    help.en = "Users email address to use for notifications"
+    help.fr = "Adresse e-mail des utilisateurs à utiliser pour les notifications"
+    type = "user"
+
 [resources]
 
-    [resources.ports]
-
     [resources.sources]
-    
-        [resources.sources.main]
-        url = "https://github.com/n8n-io/n8n/archive/refs/tags/n8n@1.80.3.tar.gz"
-        sha256 = "f7273f0802528d5caf6e1a90c0f5d20682308156dd3c86ce932aaa9216748316"
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.version_regex = "^n8n@(.*)$"
-        prefetch = false
+
+    [resources.sources.main]
+    url = "https://github.com/n8n-io/n8n/archive/refs/tags/n8n@1.80.3.tar.gz"
+    sha256 = "f7273f0802528d5caf6e1a90c0f5d20682308156dd3c86ce932aaa9216748316"
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.version_regex = "^n8n@(.*)$"
+    prefetch = false
 
     [resources.system_user]
     allow_email = true
@@ -71,6 +69,8 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+
+    [resources.ports]
 
     [resources.apt]
     packages = "postgresql"
