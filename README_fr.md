@@ -21,7 +21,7 @@ Il NE doit PAS être modifié à la main.
 n8n est un outil d'automatisation de flux de travail extensible. Avec un modèle de distribution de code équitable, n8n aura toujours un code source visible, sera disponible pour s'auto-héberger et vous permettra d'ajouter vos propres fonctions, logiques et applications personnalisées. L'approche basée sur les nœuds de n8n le rend très polyvalent, vous permettant de connecter n'importe quoi à tout.
 
 
-**Version incluse :** 1.80.5~ynh1
+**Version incluse :** 1.81.4~ynh1
 
 ## Captures d’écran
 
