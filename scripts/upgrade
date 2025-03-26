@@ -59,9 +59,6 @@ ynh_script_progression "Upgrade a configuration file..."
 
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/.env"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/.env"
-
 #=================================================
 # INSTALL n8n
 #=================================================
@@ -69,7 +66,6 @@ ynh_script_progression "Installing $app..."
 
 # Download, check integrity, uncompress and patch the source from app.src
 pushd $install_dir
-
  	ynh_hide_warnings ynh_exec_as_app npm install n8n@$(ynh_app_upstream_version)
 	ynh_replace  --match="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'),$" \
 	                    --replace="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'), tls: {servername:'${main_domain}'}," \

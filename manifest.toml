@@ -5,7 +5,7 @@ name = "n8n"
 description.en = "Workflow Automation Tool. Easily automate tasks across different services"
 description.fr = "Outil d'automatisation du flux de travail. Automatisez facilement les tâches sur différents services"
 
-version = "1.54.4~ynh1"
+version = "1.85.1~ynh1"
 
 maintainers = []
 
@@ -34,11 +34,6 @@ ram.runtime = "50M"
     type = "path"
     default = "/n8n"
 
-    [install.admin]
-    help.en = "Users email address to use for notifications"
-    help.fr = "Adresse e-mail des utilisateurs à utiliser pour les notifications"
-    type = "user"
-
     [install.init_main_permission]
     type = "group"
     default = "visitors"
@@ -50,18 +45,21 @@ ram.runtime = "50M"
     choices = ["fr", "en"]
     default = "fr"
 
+    [install.admin]
+    help.en = "Users email address to use for notifications"
+    help.fr = "Adresse e-mail des utilisateurs à utiliser pour les notifications"
+    type = "user"
+
 [resources]
 
-    [resources.ports]
-
     [resources.sources]
-    
-        [resources.sources.main]
-        url = "https://github.com/n8n-io/n8n/archive/refs/tags/n8n@1.54.4.tar.gz"
-        sha256 = "d38474e1855749b2f10041bb7056359b34721a6248ed94546071d9597f5614e9"
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.version_regex = "^n8n@(.*)$"
-        prefetch = false
+
+    [resources.sources.main]
+    url = "https://github.com/n8n-io/n8n/archive/refs/tags/n8n@1.85.1.tar.gz"
+    sha256 = "013e036068c69e370d2a62d57326e642a198cc5df20fa1e7b792216ab2847724"
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.version_regex = "^n8n@(.*)$"
+    prefetch = false
 
     [resources.system_user]
     allow_email = true
@@ -72,6 +70,8 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+
+    [resources.ports]
 
     [resources.apt]
     packages = "postgresql"
