@@ -23,18 +23,10 @@ then
 fi
 
 # If email doesn't exist, create it
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=email --value=$(ynh_user_get_info --username=$admin --key=mail)
-if [ -z "${email:-}" ]; then
-	email=$(ynh_user_get_info --username=$admin --key=mail)
-	ynh_app_setting_set --key=email --value=$email
-fi
+ynh_app_setting_set_default --key=email --value=$(ynh_user_get_info --username=$admin --key=mail)
 
 # If language doesn't exist, create it
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=language --value="en"
-if [ -z "${language:-}" ]; then
-	language="en"
-	ynh_app_setting_set --key=language --value=$language
-fi
+ynh_app_setting_set_default --key=language --value="en"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -46,7 +38,6 @@ ynh_config_add_nginx
 
 ynh_nodejs_install
 
-env_path="$PATH"
 # Create a dedicated systemd config
 ynh_config_add_systemd
 
@@ -68,8 +59,8 @@ ynh_script_progression "Installing $app..."
 pushd $install_dir
  	ynh_hide_warnings ynh_exec_as_app npm install n8n@$(ynh_app_upstream_version)
 	ynh_replace  --match="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'),$" \
-	                    --replace="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'), tls: {servername:'${main_domain}'}," \
-	                    --file="node_modules/n8n/dist/UserManagement/email/NodeMailer.js"
+	    --replace="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'), tls: {servername:'${main_domain}'}," \
+	    --file="node_modules/n8n/dist/UserManagement/email/NodeMailer.js"
 popd
 
 #=================================================
