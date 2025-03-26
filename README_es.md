@@ -3,7 +3,7 @@ Este archivo README esta generado automaticamente<https://github.com/YunoHost/ap
 No se debe editar a mano.
 -->
 
-# n8n para Yunohost
+# n8n para YunoHost
 
 [![Nivel de integración](https://apps.yunohost.org/badge/integration/n8n)](https://ci-apps.yunohost.org/ci/apps/n8n/)
 ![Estado funcional](https://apps.yunohost.org/badge/state/n8n)
@@ -20,7 +20,7 @@ No se debe editar a mano.
 
 n8n is an extendable workflow automation tool. With a fair-code distribution model, n8n will always have visible source code, be available to self-host, and allow you to add your own custom functions, logic and apps. n8n's node-based approach makes it highly versatile, enabling you to connect anything to everything.
 
-**Versión actual:** 1.84.0~ynh1
+**Versión actual:** 1.85.1~ynh1
 
 ## Capturas
 
