@@ -27,7 +27,6 @@ ynh_script_progression "Configuring NGINX web server..."
 # Create a dedicated NGINX config
 ynh_config_add_nginx
 
-env_path="$PATH"
 # Create a dedicated systemd config
 ynh_config_add_systemd
 
@@ -51,6 +50,10 @@ pushd $install_dir
 		--replace="secure: config_1.default.getEnv('userManagement.emails.smtp.secure'), tls: {servername:'${main_domain}'}," \
 		--file="node_modules/n8n/dist/UserManagement/email/NodeMailer.js"
 popd
+
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:$app "$install_dir"
 
 #=================================================
 # START SYSTEMD SERVICE
