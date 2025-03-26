@@ -20,9 +20,9 @@ ynh_script_progression "Setting up source files..."
 mkdir -p $install_dir
 
 #=================================================
-# NGINX CONFIGURATION
+# SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression "Configuring NGINX web server..."
+ynh_script_progression "Adding system configurations related to $app..."
 
 # Create a dedicated NGINX config
 ynh_config_add_nginx
