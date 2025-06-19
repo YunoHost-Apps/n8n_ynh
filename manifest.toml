@@ -19,8 +19,10 @@ code = "https://github.com/n8n-io/n8n"
 yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
+
 ldap = false
 sso = false
+
 disk = "50M"
 ram.build = "1500M"
 ram.runtime = "50M"
