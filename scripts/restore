@@ -48,7 +48,7 @@ yunohost service add $app --description="Workflow Automation Tool" --log="/var/l
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action=restart --log_path=systemd --wait_until="Editor is now accessible via:"
+ynh_systemctl --service=$app --action=restart --log_path=systemd #--wait_until="Editor is now accessible via:"
 
 ynh_systemctl --service=nginx --action=reload
 
