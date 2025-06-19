@@ -13,6 +13,13 @@ ynh_script_progression "Stopping $app's systemd service..."
 ynh_systemctl --service=$app --action=stop --log_path="systemd"
 
 #=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression "Installing dependencies..."
+
+ynh_nodejs_install
+
+#=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
 ynh_script_progression "Ensuring downward compatibility..."
@@ -23,18 +30,10 @@ then
 fi
 
 # If email doesn't exist, create it
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=email --value=$(ynh_user_get_info --username=$admin --key=mail)
-if [ -z "${email:-}" ]; then
-	email=$(ynh_user_get_info --username=$admin --key=mail)
-	ynh_app_setting_set --key=email --value=$email
-fi
+ynh_app_setting_set_default --key=email --value=$(ynh_user_get_info --username=$admin --key=mail)
 
 # If language doesn't exist, create it
-# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=language --value="en"
-if [ -z "${language:-}" ]; then
-	language="en"
-	ynh_app_setting_set --key=language --value=$language
-fi
+ynh_app_setting_set_default --key=language --value="en"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -44,9 +43,6 @@ ynh_script_progression "Upgrading NGINX web server configuration..."
 # Create a dedicated NGINX config
 ynh_config_add_nginx
 
-ynh_nodejs_install
-
-env_path="$PATH"
 # Create a dedicated systemd config
 ynh_config_add_systemd
 
@@ -59,9 +55,6 @@ ynh_script_progression "Upgrade a configuration file..."
 
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/.env"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/.env"
-
 #=================================================
 # INSTALL n8n
 #=================================================
@@ -69,8 +62,7 @@ ynh_script_progression "Installing $app..."
 
 # Download, check integrity, uncompress and patch the source from app.src
 pushd $install_dir
-
- 	ynh_hide_warnings ynh_exec_as_app node_load_PATH npm install n8n@$(ynh_app_upstream_version)
+ 	ynh_hide_warnings ynh_exec_as_app npm install n8n@$(ynh_app_upstream_version)
 popd
 
 #=================================================

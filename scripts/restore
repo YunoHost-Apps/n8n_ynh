@@ -10,8 +10,6 @@ ynh_script_progression "Restoring the app main directory..."
 
 ynh_restore "$install_dir"
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # RESTORE THE DATA DIRECTORY
 #=================================================
@@ -19,7 +17,12 @@ ynh_script_progression "Restoring the data directory..."
 
 ynh_restore "$data_dir"
 
-chown -R $app:www-data "$data_dir"
+#=================================================
+# REINSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression "Reinstalling dependencies..."
+
+ynh_nodejs_install
 
 #=================================================
 # RESTORE THE POSTGRESQL DATABASE
@@ -31,12 +34,7 @@ ynh_psql_db_shell < ./db.sql
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
 #=================================================
-# RESTORE THE PHP-FPM CONFIGURATION
-#=================================================
 ynh_script_progression "Restoring system configurations related to $app..."
-
-# Install Nodejs
-ynh_nodejs_install
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
 
