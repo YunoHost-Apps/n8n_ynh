@@ -1,14 +1,14 @@
 [Unit]
-Description=n8n: Workflow Automation Tool
+Description=n8n: workflow automation tool
 After=syslog.target network.target
 
 [Service]
 Type=simple
 User=__APP__
 Group=__APP__
+Environment="PATH=__PATH_WITH_NODEJS__"
+Environment="NODE_ENV=production"
 WorkingDirectory=__INSTALL_DIR__/
-Environment=PATH=__ENV_PATH__
-Environment=NODE_ENV=production
 ExecStart=__INSTALL_DIR__/node_modules/n8n/bin/n8n
 Restart=always
 
