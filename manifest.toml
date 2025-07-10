@@ -2,8 +2,8 @@ packaging_format = 2
 
 id = "n8n"
 name = "n8n"
-description.en = "Workflow Automation Tool. Easily automate tasks across different services"
-description.fr = "Outil d'automatisation du flux de travail. Automatisez facilement les tâches sur différents services"
+description.en = "Workflow Automation Tool"
+description.fr = "Outil d'automatisation du flux de travail"
 
 version = "1.102.0~ynh1"
 
