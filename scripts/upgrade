@@ -17,7 +17,7 @@ ynh_systemctl --service=$app --action=stop --log_path="systemd"
 #=================================================
 ynh_script_progression "Installing dependencies..."
 
-ynh_nodejs_install
+#REMOVEME? ynh_nodejs_install
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY

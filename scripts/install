@@ -9,7 +9,7 @@ email=$(ynh_user_get_info --username=$admin --key=mail)
 # INSTALL DEPENDENCIES
 #=================================================
 
-ynh_nodejs_install
+#REMOVEME? ynh_nodejs_install
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
