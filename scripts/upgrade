@@ -61,6 +61,7 @@ popd
 ynh_safe_rm "$install_dir"/.npm
 ynh_safe_rm "$install_dir"/.cache
 
+chmod 600 "$data_dir/.n8n/config"
 
 #=================================================
 # START SYSTEMD SERVICE
