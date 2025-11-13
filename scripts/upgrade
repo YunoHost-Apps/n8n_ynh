@@ -62,9 +62,11 @@ ynh_safe_rm "$install_dir"/.npm
 ynh_safe_rm "$install_dir"/.cache
 
 if [ ! -f "$data_dir/.n8n/config" ]; then
+    touch "$data_dir/.n8n/config"
     echo "{}" > "$data_dir/.n8n/config"
 fi
 chmod 640 "$data_dir/.n8n/config"
+chown $app:$app "$data_dir/.n8n/config"
 
 #=================================================
 # START SYSTEMD SERVICE
