@@ -61,7 +61,7 @@ popd
 ynh_safe_rm "$install_dir"/.npm
 ynh_safe_rm "$install_dir"/.cache
 
-if [ -f "$data_dir/.n8n/config" ]; then
+if [ ! -f "$data_dir/.n8n/config" ]; then
     echo "{}" > "$data_dir/.n8n/config"
 fi
 chmod 640 "$data_dir/.n8n/config"
