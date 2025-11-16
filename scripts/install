@@ -49,7 +49,6 @@ popd
 ynh_safe_rm "$install_dir"/.npm
 ynh_safe_rm "$install_dir"/.cache
 
-
 chmod -R o-rwx "$install_dir"
 chown -R $app:$app "$install_dir"
 

@@ -61,7 +61,6 @@ popd
 ynh_safe_rm "$install_dir"/.npm
 ynh_safe_rm "$install_dir"/.cache
 
-
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
