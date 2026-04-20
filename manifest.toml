@@ -5,7 +5,7 @@ name = "n8n"
 description.en = "Workflow Automation Tool"
 description.fr = "Outil d'automatisation du flux de travail"
 
-version = "2.15.1~ynh1"
+version = "2.16.2~ynh1"
 
 maintainers = []
 
@@ -57,8 +57,8 @@ ram.runtime = "550M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/n8n-io/n8n/archive/refs/tags/n8n@2.15.1.tar.gz"
-    sha256 = "f45198362b9f30de9223c8105f30f23e568387fcf20cbff19f840172dd0f051a"
+    url = "https://github.com/n8n-io/n8n/archive/refs/tags/n8n@2.16.2.tar.gz"
+    sha256 = "79ff5b1d2152ffa67bc33af413e5776397c822d2c700b984ef9406e34e81d8f5"
     autoupdate.strategy = "latest_github_release"
     autoupdate.version_regex = "^n8n@(.*)$"
     prefetch = false
