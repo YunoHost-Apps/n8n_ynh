@@ -5,7 +5,7 @@ name = "n8n"
 description.en = "Workflow Automation Tool"
 description.fr = "Outil d'automatisation du flux de travail"
 
-version = "2.18.5~ynh1"
+version = "2.18.5~ynh2"
 
 maintainers = []
 
