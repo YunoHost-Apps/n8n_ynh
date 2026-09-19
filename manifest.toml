@@ -76,10 +76,10 @@ ram.runtime = "550M"
     [resources.ports]
 
     [resources.apt]
-    packages = "postgresql"
+    packages = ["build-essential", "postgresql"]
 
     [resources.database]
     type = "postgresql"
 
     [resources.nodejs]
-    version = "22"
+    version = "24"
